@@ -1,26 +1,22 @@
 --------------------------------------
 ----------- (c) 2016 -----------------
------------ by LHARC -----------------
+-------------- LHARC -----------------
+------------ REWRITE -----------------
+----------- AND OPTIMIZED ------------
+-------  BY THE MYTH WALID -----------
+--------------------------------------
 ------ github.com/Stoppered ----------
 --------------------------------------
 ----- Don't remove the credits -------
 ----- Be a cool guy, and support me --
------- send me a cent on paypal ------
--- \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ --
------ contato@lucas-henrique.com -----
---------------------------------------
---------- WWW.BVR-RPG.COM ------------
 --------------------------------------
 
-function doBeepNextToPlayers ( thePlayer, commandName, theVehicle )
-for id, player in ipairs(getElementsByType("player")) do 
-local vehicleX, vehicleY, vehicleZ = getElementPosition ( client )
-local playerX, playerY, playerZ = getElementPosition ( player )
-local distance = getDistanceBetweenPoints3D ( vehicleX, vehicleY, vehicleZ, playerX,playerY, playerZ )
-if(distance < 25) then
-triggerClientEvent ( player, "doReverseBeep", player, vehicleX, vehicleY, vehicleZ)
-end
-end
+function doBeepNextToPlayers (theVehicle)
+    if theVehicle then 
+        local vehicleX, vehicleY, vehicleZ = getElementPosition (theVehicle)
+        local position = toJSON({vehicleX, vehicleY, vehicleZ})
+        triggerClientEvent ( root, "doReverseBeep", root, position)
+    end 
 end
 addEvent( "onReverseBeep", true )
 addEventHandler( "onReverseBeep", resourceRoot, doBeepNextToPlayers )
